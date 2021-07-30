@@ -1,3 +1,8 @@
+For the following methods , one is the core part, that is to use two pointers。
+And in a specific situation, those two will intersect so that we get the answer.
+
+
+# Offer 52
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, x):
@@ -10,10 +15,10 @@ class Solution:
         B = headB
         if not A or not B: return None
         while A!=B:
-            if not A:
-                A = headB
-            else: A = A.next
-            if not B:
-                B = headA
-            else: B = B.next
+            if A:
+                A = A.next
+            else: A = headB
+            if B:
+                B = B.next
+            else: B = headA
         return A
