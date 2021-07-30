@@ -1,0 +1,59 @@
+# Q1—— 04.10. Check SubTree LCCI
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def checkSubTree(self, t1, t2):
+        """
+        :type t1: TreeNode
+        :type t2: TreeNode
+        :rtype: bool
+        """
+        def judgeVal(t1, t2):
+            if t2 == None: return True
+            if t1 == None: return False
+            if t1.val != t2.val: return False
+            return judgeVal(t1.left, t2.left) or judgeVal(t1.right, t2.right)
+        def judgeSubTree(t1, t2):
+            if t2 == None: return True
+            if t1 == None: return False
+            if t1.val == t2.val and judgeVal(t1, t2): return True
+            return judgeSubTree(t1.left, t2) or judgeSubTree(t1.right, t2)
+        return judgeSubTree(t1, t2)
+        
+        
+# Q2—— 1367. Linked List in Binary Tree
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution(object):
+    def isSubPath(self, head, root):
+        """
+        :type head: ListNode
+        :type root: TreeNode
+        :rtype: bool
+        """
+        def judgeVal(root, head):
+            if head == None: return True
+            if root == None: return False
+            if root.val != head.val: return False
+            return judgeVal(root.left, head.next) or judgeVal(root.right, head.next)
+        def judgeSubPath(root, head):
+            if head == None: return True
+            if root == None: return False
+            if root.val == head.val and judgeVal(root, head): return True
+            return judgeSubPath(root.left, head) or judgeSubPath(root.right, head)
+        return judgeSubPath(root, head)
