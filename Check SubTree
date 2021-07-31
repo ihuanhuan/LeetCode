@@ -17,7 +17,7 @@ class Solution(object):
             if t2 == None: return True
             if t1 == None: return False
             if t1.val != t2.val: return False
-            return judgeVal(t1.left, t2.left) or judgeVal(t1.right, t2.right)
+            return judgeVal(t1.left, t2.left) and judgeVal(t1.right, t2.right)
         def judgeSubTree(t1, t2):
             if t2 == None: return True
             if t1 == None: return False
